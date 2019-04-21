@@ -9,6 +9,7 @@ import store from "./store";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/layout/Header";
 import AddProject from "./components/project/AddProject";
+import UpdateProject from "./components/project/UpdateProject";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Header />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addProject" component={AddProject} />
+            <Route exact path="/updateProject/:id" component={UpdateProject} />
           </div>
         </Router>
       </Provider>
