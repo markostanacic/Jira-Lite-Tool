@@ -1,6 +1,8 @@
 package com.example.JiraLiteTool.JiraLiteTool.services;
 
+import com.example.JiraLiteTool.JiraLiteTool.domains.Backlog;
 import com.example.JiraLiteTool.JiraLiteTool.domains.Project;
+import com.example.JiraLiteTool.JiraLiteTool.repositories.BacklogRepository;
 import com.example.JiraLiteTool.JiraLiteTool.repositories.ProjectRepository;
 import com.example.JiraLiteTool.exceptions.ProjectIdException;
 
@@ -12,11 +14,24 @@ public class ProjectService {
 
 	@Autowired
 	private ProjectRepository projectRepository;
+	
+	@Autowired
+	private BacklogRepository backlogRepository;
 
 	public Project saveOrUpdateProject(Project project) {
 
 		try {
 			project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+
+			if (project.getId() == null) {
+				Backlog backlog = new Backlog();
+				project.setBacklog(backlog);
+				backlog.setProject(project);
+				backlog.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+			} else {
+				project.setBacklog(backlogRepository.findByProjectIdentifier(project.getProjectIdentifier().toUpperCase()));
+			}
+
 			return projectRepository.save(project);
 		} catch (Exception e) {
 			throw new ProjectIdException(
