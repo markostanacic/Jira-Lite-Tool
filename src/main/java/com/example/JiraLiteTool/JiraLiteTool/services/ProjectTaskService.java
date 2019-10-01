@@ -31,7 +31,7 @@ public class ProjectTaskService {
 		backlog.setPTSequence(backlogSequence);
 
 		projectTask.setProjectSequence(backlog.getProjectIdentifier() + "-" + backlogSequence);
-		projectTask.setProjectIdentifer(projectIdentifier);
+		projectTask.setProjectIdentifier(projectIdentifier);
 
 		// INITIAL priority when priority is null
 		if (projectTask.getPriority() == null) {
@@ -47,7 +47,7 @@ public class ProjectTaskService {
 	}
 
 	public Iterable<ProjectTask> findBacklogById(String backlogId) {
-		return projectTaskRepository.findByProjectIdentfierOrderByPriority(backlogId);
+		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlogId);
 	}
 
 }
