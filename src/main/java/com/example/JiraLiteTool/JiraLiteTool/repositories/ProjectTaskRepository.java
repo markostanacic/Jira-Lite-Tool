@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectTaskRepository extends CrudRepository<ProjectTask, Long> {
 	
-	List<ProjectTask> findByProjectIdentfierOrderByPriority(String backlogId);
+	List<ProjectTask> findByProjectIdentifierOrderByPriority(String backlogId);
 }
