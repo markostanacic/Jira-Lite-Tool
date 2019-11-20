@@ -30,20 +30,20 @@ public class Backlog {
 	@JsonIgnore
 	private Project project;
 
-	// OneToMany projecttasks
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "backlog")
-	private List<ProjectTask> projectTask = new ArrayList<>();
+	// OneToMany project tasks
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "backlog", orphanRemoval = true)
+	private List<ProjectTask> projectTasks = new ArrayList<>();
 
 	public Project getProject() {
 		return project;
 	}
 
-	public List<ProjectTask> getProjectTask() {
-		return projectTask;
+	public List<ProjectTask> getProjectTasks() {
+		return projectTasks;
 	}
 
-	public void setProjectTask(List<ProjectTask> projectTask) {
-		this.projectTask = projectTask;
+	public void setProjectTasks(List<ProjectTask> projectTasks) {
+		this.projectTasks = projectTasks;
 	}
 
 	public void setProject(Project project) {
